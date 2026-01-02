@@ -1,6 +1,5 @@
 import argparse
 
-from train.letter_recognition import LetterRecognitionTrainer
 from train.license_plate_detection import LicensePlateDetectionTrainer
 
 parser = argparse.ArgumentParser()
@@ -21,11 +20,4 @@ detector = LicensePlateDetectionTrainer(
     save_path=args.save_path_1,
 )
 
-regconizor = LetterRecognitionTrainer(
-    model="yolo11n.pt",
-    train_data="./dataset/letter.yaml",
-    save_path=args.save_path_2,
-)
-
 detector.train(epochs=30, imgsz=320)
-regconizor.train(epochs=30, imgsz=640)

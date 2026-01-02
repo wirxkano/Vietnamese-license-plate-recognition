@@ -1,1 +1,1 @@
-python test.py --input test --lp_detector checkpoint/plate/best.pt --letter_regconizor checkpoint/letter/best.pt
+python test.py --input test --lp_detector checkpoint/plate/best.pt

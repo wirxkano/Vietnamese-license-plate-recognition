@@ -1,1 +1,1 @@
-python main.py --save_path_1 /checkpoints/plate --save_path_2 /checkpoints/letter
+python main.py --save_path_1 /checkpoints/plate
