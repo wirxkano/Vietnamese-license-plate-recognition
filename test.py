@@ -28,7 +28,7 @@ for result in results:
         res = letter_detector.predict(img)
         chars = res[0]["rec_texts"]
         if len(chars) == 2:  # 2 line plates
-            txt = chars[0] + chars[1]
+            txt = chars[0] + "-" + chars[1]
         else:
             txt = chars[0]
 
