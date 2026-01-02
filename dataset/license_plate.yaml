@@ -1,0 +1,7 @@
+train: LP_detection/images/train
+val: LP_detection/images
+
+
+# Classes
+nc:  1 # number of classes
+names: ['license_plate']  # class names
