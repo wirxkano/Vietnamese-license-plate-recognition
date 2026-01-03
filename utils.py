@@ -70,3 +70,13 @@ def deskew(src_img, change_cons, center_thres):
         )
     else:
         return rotate_image(src_img, compute_skew(src_img, center_thres))
+
+
+REPLACE_MAP = {"!": "1", "|": "1"}
+
+
+def normalize_plate(text):
+    text = text.upper()
+    for k, v in REPLACE_MAP.items():
+        text = text.replace(k, v)
+    return text
