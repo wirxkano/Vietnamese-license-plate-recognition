@@ -1,6 +1,7 @@
 import os
 import cv2
 import argparse
+import utils
 import matplotlib.pyplot as plt
 
 from ultralytics import YOLO
@@ -27,7 +28,7 @@ for result in results:
         img = result.orig_img
         res = letter_detector.predict(img)
         chars = res[0]["rec_texts"]
-        if len(chars) == 2:  # 2 line plates
+        if len(chars) == 2:  # 2 lines plate
             txt = chars[0] + "-" + chars[1]
         else:
             txt = chars[0]
@@ -50,12 +51,22 @@ for result in results:
                 color=(0, 0, 225),
                 thickness=2,
             )
-            res = letter_detector.predict(crop_img)
-            chars = res[0]["rec_texts"]
-            if len(chars) == 2:  # 2 line plates
-                txt = chars[0] + "-" + chars[1]
-            else:
-                txt = chars[0]
+
+            flag = False
+            for cc in range(0, 2):
+                for ct in range(0, 2):
+                    res = letter_detector.predict(utils.deskew(crop_img, cc, ct))
+                    chars = res[0]["rec_texts"]
+                    if len(chars) == 0:
+                        continue
+                    if len(chars) == 2:  # 2 lines plate
+                        txt = chars[0] + "-" + chars[1]
+                    else:
+                        txt = chars[0]
+                    flag = True
+
+                if flag:
+                    break
 
             cv2.putText(
                 img,
